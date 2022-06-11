@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface PlayListRepository extends JpaRepository<PlayList,Integer> {
-    PlayList findPlayListByUserId(Integer id);
+
     List<PlayList> findAllByUserId(Integer id);
 }

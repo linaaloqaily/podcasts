@@ -1,11 +1,16 @@
-//package com.example.podcasts.DTO;
-//
-//import lombok.AllArgsConstructor;
-//import lombok.Data;
-//import lombok.NoArgsConstructor;
-//
-//@AllArgsConstructor @NoArgsConstructor @Data
-//public class API {
-//    private String message;
-//    private Integer status;
-//}
+package com.example.podcasts.DTO;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import org.springframework.http.HttpStatus;
+
+import java.time.ZonedDateTime;
+
+@Getter
+@AllArgsConstructor
+public class API {
+    private final String message;
+    private final HttpStatus httpStatus;
+    private final ZonedDateTime timestamp;
+
+}

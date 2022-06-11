@@ -1,11 +1,11 @@
 package com.example.podcasts.Service;
 
 
+import com.example.podcasts.Exception.ApiRequestException;
 import com.example.podcasts.Model.Podcast;
 import com.example.podcasts.Model.User;
 import com.example.podcasts.Repository.PodcastRepository;
 import com.example.podcasts.Repository.UserRepository;
-import com.example.podcasts.handelException.ApiRequestException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -57,18 +57,6 @@ public class PodcastService {
         return podcastRepository.findAll();
     }
 
-//    public void updatePodcast(Integer id, Podcast podcast) throws IOException {
-//        Optional<Podcast> oldPodcast = podcastRepository.findById(id);
-//        if(oldPodcast.isEmpty()) {
-//            throw new ApiRequestException("Invalid id");
-//        }
-//        oldPodcast.get().setId(podcast.getId());
-//        oldPodcast.get().setName(podcast.getName());
-//        oldPodcast.get().setDescription(podcast.getDescription());
-//        oldPodcast.get().setType(podcast.getType());
-//        podcastRepository.save(oldPodcast.get());
-//    }
-
     public boolean deletePodcast(Integer id) throws IOException {
         Podcast podcast = podcastRepository.findById(id).orElse(null);
         if(podcast == null) {
@@ -98,4 +86,19 @@ public class PodcastService {
         podcast.setLink("data:audio/ogg;base64," + Base64.getEncoder().encodeToString(soundByte));
         return podcast.getLink();
     }
+
+
+//        public void updatePodcast(Integer id, Podcast podcast) throws IOException {
+//        Optional<Podcast> oldPodcast = podcastRepository.findById(id);
+//        if(oldPodcast.isEmpty()) {
+//            throw new ApiRequestException("Invalid id");
+//        }
+//        oldPodcast.get().setId(podcast.getId());
+//        oldPodcast.get().setName(podcast.getName());
+//        oldPodcast.get().setDescription(podcast.getDescription());
+//        oldPodcast.get().setType(podcast.getType());
+//        podcastRepository.save(oldPodcast.get());
+//    }
+
 }
+

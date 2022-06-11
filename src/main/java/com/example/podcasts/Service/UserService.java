@@ -1,10 +1,11 @@
 package com.example.podcasts.Service;
 
 
+import com.example.podcasts.Exception.ApiRequestException;
 import com.example.podcasts.Model.User;
 import com.example.podcasts.Repository.UserRepository;
-import com.example.podcasts.handelException.ApiRequestException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -29,6 +30,8 @@ public class UserService {
     }
 
     public void addUser(User user) {
+        String hashedPassword=new BCryptPasswordEncoder().encode(user.getPassword());
+        user.setPassword(hashedPassword);
         userRepository.save(user);
     }
 
@@ -39,8 +42,11 @@ public class UserService {
        }
         oldUser.setId(user.getId());
         oldUser.setUsername(user.getUsername());
+        oldUser.setEmail(user.getEmail());
         oldUser.setPassword(user.getPassword());
         oldUser.setRole(user.getRole());
+        String hashedPassword=new BCryptPasswordEncoder().encode(user.getPassword());
+        oldUser.setPassword(hashedPassword);
         userRepository.save(oldUser);
     }
 
